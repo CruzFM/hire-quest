@@ -1,4 +1,5 @@
 import pandas as pd
+import csv
 
 def check_url():
     # inputs from the user
@@ -12,17 +13,23 @@ def check_url():
     else:
         print("It's not a valid URL. Ending program.")
 
-print("Hola ferchu!")
-
 check_url()
-
-
 
 data = {
     "Job title": ["Software Engineer", "Data Analyst"],
     "Company": ["Company A", "Company B"],
     "Status": ["Applied", "Pending"]
 }
+
+# creates a CSV file
+with open("job_applications.csv", "w") as file:
+    writer = csv.writer(file)
+
+    writer.writerow(data.keys())
+
+    rows = zip(*data.values())
+    writer.writerows(rows)
+
 
 df = pd.DataFrame(data)
 
